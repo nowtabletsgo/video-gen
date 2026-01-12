@@ -1,8 +1,8 @@
 {
   "id": "c6e410bc-5e2c-460b-ae81-c91b6094fbb1",
-  "revision": 0,
-  "last_node_id": 381,
-  "last_link_id": 652,
+  "revision": 1,
+  "last_node_id": 1187,
+  "last_link_id": 1242,
   "nodes": [
     {
       "id": 92,
@@ -77,7 +77,8 @@
           "type": "WANVAE",
           "slot_index": 0,
           "links": [
-            324
+            324,
+            1234
           ]
         }
       ],
@@ -414,7 +415,8 @@
           "name": "lora",
           "type": "WANVIDLORA",
           "links": [
-            110
+            110,
+            1238
           ]
         }
       ],
@@ -565,7 +567,8 @@
           "name": "WANVIDEOTEXTEMBEDS",
           "type": "WANVIDEOTEXTEMBEDS",
           "links": [
-            599
+            599,
+            1228
           ]
         }
       ],
@@ -597,7 +600,8 @@
           "name": "WANVIDEOMODEL",
           "type": "WANVIDEOMODEL",
           "links": [
-            597
+            597,
+            1240
           ]
         }
       ],
@@ -800,7 +804,7 @@
         "Node name for S&R": "WanVideoModelLoader"
       },
       "widgets_values": [
-        "WanVideo\\wan2.2\\Wan2.2_Remix_NSFW_i2v_14b_high_lighting_v2.1.safetensors",
+        "wan22RemixT2VI2V_i2vHighV21.safetensors",
         "fp16_fast",
         "disabled",
         "offload_device",
@@ -977,7 +981,7 @@
         {
           "name": "samples",
           "type": "LATENT",
-          "link": 596
+          "link": 1229
         }
       ],
       "outputs": [
@@ -1278,7 +1282,8 @@
           "name": "value",
           "type": "INT",
           "links": [
-            362
+            362,
+            1232
           ]
         }
       ],
@@ -1314,7 +1319,8 @@
           "name": "value",
           "type": "INT",
           "links": [
-            361
+            361,
+            1231
           ]
         }
       ],
@@ -1425,7 +1431,8 @@
           "name": "image_embeds",
           "type": "WANVIDIMAGE_EMBEDS",
           "links": [
-            600
+            600,
+            1227
           ]
         }
       ],
@@ -2751,90 +2758,6 @@
       "bgcolor": "#653"
     },
     {
-      "id": 348,
-      "type": "WanVideoSamplerv2",
-      "pos": [
-        1485.7702836202573,
-        -534.0386151958751
-      ],
-      "size": [
-        295.37109375,
-        749.8994140625
-      ],
-      "flags": {},
-      "order": 61,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "model",
-          "type": "WANVIDEOMODEL",
-          "link": 597
-        },
-        {
-          "name": "image_embeds",
-          "type": "WANVIDIMAGE_EMBEDS",
-          "link": 600
-        },
-        {
-          "name": "scheduler",
-          "type": "WANVIDEOSCHEDULER",
-          "link": 598
-        },
-        {
-          "name": "text_embeds",
-          "shape": 7,
-          "type": "WANVIDEOTEXTEMBEDS",
-          "link": 599
-        },
-        {
-          "name": "samples",
-          "shape": 7,
-          "type": "LATENT",
-          "link": null
-        },
-        {
-          "name": "extra_args",
-          "shape": 7,
-          "type": "WANVIDSAMPLEREXTRAARGS",
-          "link": 652
-        },
-        {
-          "name": "cfg",
-          "type": "FLOAT",
-          "widget": {
-            "name": "cfg"
-          },
-          "link": 601
-        }
-      ],
-      "outputs": [
-        {
-          "name": "samples",
-          "type": "LATENT",
-          "links": [
-            596
-          ]
-        },
-        {
-          "name": "denoised_samples",
-          "type": "LATENT",
-          "links": null
-        }
-      ],
-      "properties": {
-        "cnr_id": "ComfyUI-WanVideoWrapper",
-        "ver": "98f8e56bcacfc07e12cbb4b26555b2b28d9db92f",
-        "Node name for S&R": "WanVideoSamplerv2"
-      },
-      "widgets_values": [
-        6,
-        42,
-        "fixed",
-        true,
-        false
-      ]
-    },
-    {
       "id": 323,
       "type": "GetImageSizeAndCount",
       "pos": [
@@ -2971,7 +2894,8 @@
           "type": "BLOCKSWAPARGS",
           "slot_index": 0,
           "links": [
-            156
+            156,
+            1236
           ]
         }
       ],
@@ -3124,7 +3048,8 @@
           "name": "IMAGE",
           "type": "IMAGE",
           "links": [
-            234
+            234,
+            1230
           ]
         },
         {
@@ -3175,6 +3100,915 @@
           }
         }
       }
+    },
+    {
+      "id": 382,
+      "type": "MarkdownNote",
+      "pos": [
+        20,
+        20
+      ],
+      "size": [
+        520,
+        260
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "NOTE_REMIX_PATCH"
+      },
+      "widgets_values": [
+        "# Remix patch\nThis workflow is based on `wanvideo_2_1_14B_SCAIL_pose_control_example_01` and patched for **Wan 2.2 Remix NSFW v2.1** (high/low).\n\n- ModelLoader -> Wan2.2 Remix NSFW I2V v2.1 (high lighting)\n- Text encoder -> nsfw_wan_umt5-xxl\n- Lightx2v LoRA disabled\n\n**Note:** Uni3C is not included in this base example; add Uni3C ControlNet nodes if needed."
+      ]
+    },
+    {
+      "id": 1004,
+      "type": "WanVideoSampler",
+      "pos": [
+        1705.9842529296875,
+        -1648.5826416015625
+      ],
+      "size": [
+        303.04217529296875,
+        690
+      ],
+      "flags": {},
+      "order": 51,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "model",
+          "name": "model",
+          "type": "WANVIDEOMODEL",
+          "link": 1241
+        },
+        {
+          "label": "image_embeds",
+          "name": "image_embeds",
+          "type": "WANVIDIMAGE_EMBEDS",
+          "link": 1227
+        },
+        {
+          "label": "text_embeds",
+          "name": "text_embeds",
+          "shape": 7,
+          "type": "WANVIDEOTEXTEMBEDS",
+          "link": 1228
+        },
+        {
+          "label": "samples",
+          "name": "samples",
+          "shape": 7,
+          "type": "LATENT",
+          "link": 1242
+        },
+        {
+          "label": "feta_args",
+          "name": "feta_args",
+          "shape": 7,
+          "type": "FETAARGS",
+          "link": null
+        },
+        {
+          "label": "context_options",
+          "name": "context_options",
+          "shape": 7,
+          "type": "WANVIDCONTEXT",
+          "link": 1225
+        },
+        {
+          "label": "cache_args",
+          "name": "cache_args",
+          "shape": 7,
+          "type": "CACHEARGS"
+        },
+        {
+          "label": "flowedit_args",
+          "name": "flowedit_args",
+          "shape": 7,
+          "type": "FLOWEDITARGS"
+        },
+        {
+          "label": "slg_args",
+          "name": "slg_args",
+          "shape": 7,
+          "type": "SLGARGS"
+        },
+        {
+          "label": "loop_args",
+          "name": "loop_args",
+          "shape": 7,
+          "type": "LOOPARGS"
+        },
+        {
+          "label": "experimental_args",
+          "name": "experimental_args",
+          "shape": 7,
+          "type": "EXPERIMENTALARGS"
+        },
+        {
+          "label": "sigmas",
+          "name": "sigmas",
+          "shape": 7,
+          "type": "SIGMAS"
+        },
+        {
+          "label": "unianimate_poses",
+          "name": "unianimate_poses",
+          "shape": 7,
+          "type": "UNIANIMATE_POSE"
+        },
+        {
+          "label": "fantasytalking_embeds",
+          "name": "fantasytalking_embeds",
+          "shape": 7,
+          "type": "FANTASYTALKING_EMBEDS"
+        },
+        {
+          "label": "uni3c_embeds",
+          "name": "uni3c_embeds",
+          "shape": 7,
+          "type": "UNI3C_EMBEDS",
+          "link": 1224
+        },
+        {
+          "label": "multitalk_embeds",
+          "name": "multitalk_embeds",
+          "shape": 7,
+          "type": "MULTITALK_EMBEDS",
+          "link": null
+        },
+        {
+          "name": "freeinit_args",
+          "shape": 7,
+          "type": "FREEINITARGS",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "samples",
+          "name": "samples",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            1229
+          ]
+        },
+        {
+          "name": "denoised_samples",
+          "type": "LATENT",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "ComfyUI-WanVideoWrapper",
+        "ver": "d9b1f4d1a5aea91d101ae97a54714a5861af3f50",
+        "Node name for S&R": "WanVideoSampler",
+        "aux_id": "MaTeZZ/ComfyUI-WanVideoWrapper-MultiTalk"
+      },
+      "widgets_values": [
+        16,
+        1.0000000000000002,
+        1,
+        671415484437633,
+        "fixed",
+        true,
+        "unipc",
+        0,
+        1,
+        "",
+        "comfy",
+        6,
+        -1,
+        false
+      ]
+    },
+    {
+      "id": 1181,
+      "type": "WanVideoContextOptions",
+      "pos": [
+        1412.3712158203125,
+        -1089.52734375
+      ],
+      "size": [
+        270,
+        202
+      ],
+      "flags": {},
+      "order": 28,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "reference_latent",
+          "shape": 7,
+          "type": "LATENT",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "context_options",
+          "type": "WANVIDCONTEXT",
+          "links": [
+            1225
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "ComfyUI-WanVideoWrapper",
+        "ver": "456d04e318e37bf2c8728f1ab46a93de018b7d49",
+        "Node name for S&R": "WanVideoContextOptions"
+      },
+      "widgets_values": [
+        "uniform_standard",
+        100,
+        4,
+        16,
+        true,
+        false,
+        "linear"
+      ]
+    },
+    {
+      "id": 1136,
+      "type": "WanVideoUni3C_ControlnetLoader",
+      "pos": [
+        699.839111328125,
+        -1148.4677734375
+      ],
+      "size": [
+        371.6235656738281,
+        162.04649353027344
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "compile_args",
+          "name": "compile_args",
+          "shape": 7,
+          "type": "WANCOMPILEARGS"
+        }
+      ],
+      "outputs": [
+        {
+          "label": "controlnet",
+          "name": "controlnet",
+          "type": "WANVIDEOCONTROLNET",
+          "links": [
+            1175
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "ComfyUI-WanVideoWrapper",
+        "ver": "2da36b7fdaa9da9cf38785116917adf3974387da",
+        "Node name for S&R": "WanVideoUni3C_ControlnetLoader",
+        "aux_id": "MaTeZZ/ComfyUI-WanVideoWrapper-MultiTalk",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "Wan21_Uni3C_controlnet_fp16.safetensors",
+        "fp16",
+        "disabled",
+        "main_device",
+        "sageattn"
+      ],
+      "color": "#323",
+      "bgcolor": "#535"
+    },
+    {
+      "id": 1135,
+      "type": "WanVideoUni3C_embeds",
+      "pos": [
+        1426.2623291015625,
+        -1290.1004638671875
+      ],
+      "size": [
+        210,
+        146
+      ],
+      "flags": {},
+      "order": 46,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "controlnet",
+          "name": "controlnet",
+          "type": "WANVIDEOCONTROLNET",
+          "link": 1175
+        },
+        {
+          "label": "render_latent",
+          "name": "render_latent",
+          "shape": 7,
+          "type": "LATENT",
+          "link": 1189
+        },
+        {
+          "label": "render_mask",
+          "name": "render_mask",
+          "shape": 7,
+          "type": "MASK"
+        }
+      ],
+      "outputs": [
+        {
+          "label": "uni3c_embeds",
+          "name": "uni3c_embeds",
+          "type": "UNI3C_EMBEDS",
+          "links": [
+            1224
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "ComfyUI-WanVideoWrapper",
+        "ver": "2da36b7fdaa9da9cf38785116917adf3974387da",
+        "Node name for S&R": "WanVideoUni3C_embeds",
+        "aux_id": "MaTeZZ/ComfyUI-WanVideoWrapper-MultiTalk",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        1,
+        0,
+        1
+      ]
+    },
+    {
+      "id": 1151,
+      "type": "WanVideoEncode",
+      "pos": [
+        1181.1295166015625,
+        -1282.9656982421875
+      ],
+      "size": [
+        210,
+        243.25437927246094
+      ],
+      "flags": {},
+      "order": 36,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "vae",
+          "name": "vae",
+          "type": "WANVAE",
+          "link": 1234
+        },
+        {
+          "label": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 1233
+        },
+        {
+          "label": "mask",
+          "name": "mask",
+          "shape": 7,
+          "type": "MASK"
+        }
+      ],
+      "outputs": [
+        {
+          "label": "samples",
+          "name": "samples",
+          "type": "LATENT",
+          "links": [
+            1189
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "ComfyUI-WanVideoWrapper",
+        "ver": "2da36b7fdaa9da9cf38785116917adf3974387da",
+        "Node name for S&R": "WanVideoEncode",
+        "aux_id": "MaTeZZ/ComfyUI-WanVideoWrapper-MultiTalk",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        false,
+        272,
+        272,
+        144,
+        128,
+        0,
+        1
+      ]
+    },
+    {
+      "id": 1146,
+      "type": "ImageResizeKJv2",
+      "pos": [
+        -1170.000244140625,
+        -1636.511474609375
+      ],
+      "size": [
+        315,
+        336
+      ],
+      "flags": {},
+      "order": 45,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 1230
+        },
+        {
+          "label": "mask",
+          "name": "mask",
+          "shape": 7,
+          "type": "MASK"
+        },
+        {
+          "label": "width",
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": 1231
+        },
+        {
+          "label": "height",
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": 1232
+        }
+      ],
+      "outputs": [
+        {
+          "label": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            1233
+          ]
+        },
+        {
+          "label": "width",
+          "name": "width",
+          "type": "INT"
+        },
+        {
+          "label": "height",
+          "name": "height",
+          "type": "INT"
+        },
+        {
+          "label": "mask",
+          "name": "mask",
+          "type": "MASK"
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-kjnodes",
+        "ver": "1.1.1",
+        "Node name for S&R": "ImageResizeKJv2",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        512,
+        512,
+        "nearest-exact",
+        "crop",
+        "0, 0, 0",
+        "center",
+        16,
+        "cpu",
+        "<tr><td>Output: </td><td><b>97</b> x <b>832</b> x <b>480 | 443.32MB</b></td></tr>"
+      ]
+    },
+    {
+      "id": 1182,
+      "type": "WanVideoModelLoader",
+      "pos": [
+        -783.0013257514316,
+        -683.471824131216
+      ],
+      "size": [
+        477.4410095214844,
+        338
+      ],
+      "flags": {},
+      "order": 32,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "compile_args",
+          "shape": 7,
+          "type": "WANCOMPILEARGS",
+          "link": 563
+        },
+        {
+          "name": "block_swap_args",
+          "shape": 7,
+          "type": "BLOCKSWAPARGS",
+          "link": null
+        },
+        {
+          "name": "lora",
+          "shape": 7,
+          "type": "WANVIDLORA",
+          "link": null
+        },
+        {
+          "name": "vram_management_args",
+          "shape": 7,
+          "type": "VRAM_MANAGEMENTARGS",
+          "link": null
+        },
+        {
+          "name": "extra_model",
+          "shape": 7,
+          "type": "VACEPATH",
+          "link": null
+        },
+        {
+          "name": "fantasytalking_model",
+          "shape": 7,
+          "type": "FANTASYTALKINGMODEL",
+          "link": null
+        },
+        {
+          "name": "multitalk_model",
+          "shape": 7,
+          "type": "MULTITALKMODEL",
+          "link": null
+        },
+        {
+          "name": "fantasyportrait_model",
+          "shape": 7,
+          "type": "FANTASYPORTRAITMODEL",
+          "link": null
+        },
+        {
+          "name": "vace_model",
+          "shape": 7,
+          "type": "VACEPATH",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "model",
+          "type": "WANVIDEOMODEL",
+          "slot_index": 0,
+          "links": [
+            1235
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "ComfyUI-WanVideoWrapper",
+        "ver": "998a69cc0acbec503001b8b0ce0a5d5404420e1e",
+        "Node name for S&R": "WanVideoModelLoader"
+      },
+      "widgets_values": [
+        "wan22RemixT2VI2V_i2vLowV21.safetensors",
+        "fp16_fast",
+        "disabled",
+        "offload_device",
+        "sageattn",
+        "default"
+      ],
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 1183,
+      "type": "WanVideoSetBlockSwap",
+      "pos": [
+        -255.9436070031603,
+        -396.7734108769189
+      ],
+      "size": [
+        209.6841796875,
+        46
+      ],
+      "flags": {},
+      "order": 44,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "WANVIDEOMODEL",
+          "link": 1235
+        },
+        {
+          "name": "block_swap_args",
+          "shape": 7,
+          "type": "BLOCKSWAPARGS",
+          "link": 1236
+        }
+      ],
+      "outputs": [
+        {
+          "name": "model",
+          "type": "WANVIDEOMODEL",
+          "links": [
+            1237
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "ComfyUI-WanVideoWrapper",
+        "ver": "7e290c67bff1f906cdab84523018573f6c9d4d7f",
+        "Node name for S&R": "WanVideoSetBlockSwap"
+      },
+      "widgets_values": [],
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 1184,
+      "type": "WanVideoSetLoRAs",
+      "pos": [
+        -32.57836520831636,
+        -404.969415937952
+      ],
+      "size": [
+        222.27981567382812,
+        46
+      ],
+      "flags": {},
+      "order": 50,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "WANVIDEOMODEL",
+          "link": 1237
+        },
+        {
+          "name": "lora",
+          "shape": 7,
+          "type": "WANVIDLORA",
+          "link": 1238
+        }
+      ],
+      "outputs": [
+        {
+          "name": "model",
+          "type": "WANVIDEOMODEL",
+          "links": [
+            1239
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "ComfyUI-WanVideoWrapper",
+        "ver": "998a69cc0acbec503001b8b0ce0a5d5404420e1e",
+        "Node name for S&R": "WanVideoSetLoRAs"
+      },
+      "widgets_values": [],
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 1185,
+      "type": "SetNode",
+      "pos": [
+        173.52086567372532,
+        -279.32530334547414
+      ],
+      "size": [
+        210,
+        60
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 54,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "WANVIDEOMODEL",
+          "type": "WANVIDEOMODEL",
+          "link": 1239
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": null
+        }
+      ],
+      "title": "Set_model_low",
+      "properties": {
+        "previousName": "model"
+      },
+      "widgets_values": [
+        "model_low"
+      ]
+    },
+    {
+      "id": 1186,
+      "type": "GetNode",
+      "pos": [
+        1496.3651246870218,
+        -242.09818085398933
+      ],
+      "size": [
+        210,
+        60
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "WANVIDEOMODEL",
+          "type": "WANVIDEOMODEL",
+          "links": [
+            1241
+          ]
+        }
+      ],
+      "title": "Get_model_low",
+      "properties": {},
+      "widgets_values": [
+        "model_low"
+      ],
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 1187,
+      "type": "WanVideoSampler",
+      "pos": [
+        1285.9842529296875,
+        -1648.5826416015625
+      ],
+      "size": [
+        303.04217529296875,
+        690
+      ],
+      "flags": {},
+      "order": 51,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "model",
+          "name": "model",
+          "type": "WANVIDEOMODEL",
+          "link": 1240
+        },
+        {
+          "label": "image_embeds",
+          "name": "image_embeds",
+          "type": "WANVIDIMAGE_EMBEDS",
+          "link": 1227
+        },
+        {
+          "label": "text_embeds",
+          "name": "text_embeds",
+          "shape": 7,
+          "type": "WANVIDEOTEXTEMBEDS",
+          "link": 1228
+        },
+        {
+          "label": "samples",
+          "name": "samples",
+          "shape": 7,
+          "type": "LATENT"
+        },
+        {
+          "label": "feta_args",
+          "name": "feta_args",
+          "shape": 7,
+          "type": "FETAARGS",
+          "link": null
+        },
+        {
+          "label": "context_options",
+          "name": "context_options",
+          "shape": 7,
+          "type": "WANVIDCONTEXT",
+          "link": 1225
+        },
+        {
+          "label": "cache_args",
+          "name": "cache_args",
+          "shape": 7,
+          "type": "CACHEARGS"
+        },
+        {
+          "label": "flowedit_args",
+          "name": "flowedit_args",
+          "shape": 7,
+          "type": "FLOWEDITARGS"
+        },
+        {
+          "label": "slg_args",
+          "name": "slg_args",
+          "shape": 7,
+          "type": "SLGARGS"
+        },
+        {
+          "label": "loop_args",
+          "name": "loop_args",
+          "shape": 7,
+          "type": "LOOPARGS"
+        },
+        {
+          "label": "experimental_args",
+          "name": "experimental_args",
+          "shape": 7,
+          "type": "EXPERIMENTALARGS"
+        },
+        {
+          "label": "sigmas",
+          "name": "sigmas",
+          "shape": 7,
+          "type": "SIGMAS"
+        },
+        {
+          "label": "unianimate_poses",
+          "name": "unianimate_poses",
+          "shape": 7,
+          "type": "UNIANIMATE_POSE"
+        },
+        {
+          "label": "fantasytalking_embeds",
+          "name": "fantasytalking_embeds",
+          "shape": 7,
+          "type": "FANTASYTALKING_EMBEDS"
+        },
+        {
+          "label": "uni3c_embeds",
+          "name": "uni3c_embeds",
+          "shape": 7,
+          "type": "UNI3C_EMBEDS",
+          "link": 1224
+        },
+        {
+          "label": "multitalk_embeds",
+          "name": "multitalk_embeds",
+          "shape": 7,
+          "type": "MULTITALK_EMBEDS",
+          "link": null
+        },
+        {
+          "name": "freeinit_args",
+          "shape": 7,
+          "type": "FREEINITARGS",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "samples",
+          "name": "samples",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            1242
+          ]
+        },
+        {
+          "name": "denoised_samples",
+          "type": "LATENT",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "ComfyUI-WanVideoWrapper",
+        "ver": "d9b1f4d1a5aea91d101ae97a54714a5861af3f50",
+        "Node name for S&R": "WanVideoSampler",
+        "aux_id": "MaTeZZ/ComfyUI-WanVideoWrapper-MultiTalk"
+      },
+      "widgets_values": [
+        16,
+        1.0000000000000002,
+        1,
+        671415484437633,
+        "fixed",
+        true,
+        "unipc",
+        0,
+        1,
+        "",
+        "comfy",
+        0,
+        6,
+        false
+      ]
     }
   ],
   "links": [
@@ -3401,54 +4235,6 @@
       131,
       3,
       "INT"
-    ],
-    [
-      596,
-      348,
-      0,
-      28,
-      1,
-      "LATENT"
-    ],
-    [
-      597,
-      201,
-      0,
-      348,
-      0,
-      "WANVIDEOMODEL"
-    ],
-    [
-      598,
-      349,
-      0,
-      348,
-      2,
-      "WANVIDEOSCHEDULER"
-    ],
-    [
-      599,
-      202,
-      0,
-      348,
-      3,
-      "WANVIDEOTEXTEMBEDS"
-    ],
-    [
-      600,
-      324,
-      0,
-      348,
-      1,
-      "WANVIDIMAGE_EMBEDS"
-    ],
-    [
-      601,
-      240,
-      0,
-      348,
-      6,
-      "FLOAT"
     ],
     [
       604,
@@ -3683,12 +4469,164 @@
       "IMAGE"
     ],
     [
-      652,
-      354,
+      1175,
+      1136,
       0,
-      348,
+      1135,
+      0,
+      "WANVIDEOCONTROLNET"
+    ],
+    [
+      1189,
+      1151,
+      0,
+      1135,
+      1,
+      "LATENT"
+    ],
+    [
+      1224,
+      1135,
+      0,
+      1004,
+      14,
+      "UNI3C_EMBEDS"
+    ],
+    [
+      1225,
+      1181,
+      0,
+      1004,
       5,
-      "WANVIDSAMPLEREXTRAARGS"
+      "WANVIDCONTEXT"
+    ],
+    [
+      1227,
+      324,
+      0,
+      1004,
+      1,
+      "WANVIDIMAGE_EMBEDS"
+    ],
+    [
+      1228,
+      202,
+      0,
+      1004,
+      2,
+      "WANVIDEOTEXTEMBEDS"
+    ],
+    [
+      1229,
+      1004,
+      0,
+      28,
+      1,
+      "LATENT"
+    ],
+    [
+      1230,
+      130,
+      0,
+      1146,
+      0,
+      "IMAGE"
+    ],
+    [
+      1231,
+      203,
+      0,
+      1146,
+      2,
+      "INT"
+    ],
+    [
+      1232,
+      204,
+      0,
+      1146,
+      3,
+      "INT"
+    ],
+    [
+      1233,
+      1146,
+      0,
+      1151,
+      1,
+      "IMAGE"
+    ],
+    [
+      1234,
+      38,
+      0,
+      1151,
+      0,
+      "WANVAE"
+    ],
+    [
+      1235,
+      1182,
+      0,
+      1183,
+      0,
+      "WANVIDEOMODEL"
+    ],
+    [
+      1236,
+      39,
+      0,
+      1183,
+      1,
+      "BLOCKSWAPARGS"
+    ],
+    [
+      1237,
+      1183,
+      0,
+      1184,
+      0,
+      "WANVIDEOMODEL"
+    ],
+    [
+      1238,
+      56,
+      0,
+      1184,
+      1,
+      "WANVIDLORA"
+    ],
+    [
+      1239,
+      1184,
+      0,
+      1185,
+      0,
+      "WANVIDEOMODEL"
+    ],
+    [
+      1240,
+      201,
+      0,
+      1187,
+      0,
+      "WANVIDEOMODEL"
+    ],
+    [
+      1241,
+      1186,
+      0,
+      1004,
+      0,
+      "WANVIDEOMODEL"
+    ],
+    [
+      1242,
+      1187,
+      0,
+      1004,
+      3,
+      "LATENT"
     ]
   ],
   "groups": [
