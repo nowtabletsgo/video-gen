@@ -3,16 +3,17 @@ set -euo pipefail
 
 echo "== video-gen: sync_and_check =="
 
-# ---- paths (cloud fixed) ----
-COMFY_DIR="/workspace/ComfyUI"
-REPO_DIR="/workspace/repos/video-gen"
-PV_DIR="/workspace/data"
+# ---- paths ----
+COMFY_DIR="${COMFY_DIR:-/workspace/ComfyUI}"
+REPO_DIR="${REPO_DIR:-/workspace/repos/video-gen}"
+ROOT="${ROOT:-/workspace/data}"
+MODELS_DIR="${ROOT}/models"
 
 # ---- 0) basic existence ----
-echo "[0] Check PV mount: ${PV_DIR}"
-if [ ! -d "$PV_DIR" ]; then
-  echo "ERROR: PV not mounted at ${PV_DIR}"
-  echo "RunPodで Persistent Volume の Mount Path を /workspace/data に設定してください。"
+echo "[0] Check ROOT: ${ROOT}"
+if [ ! -d "$ROOT" ]; then
+  echo "ERROR: ROOT not found at ${ROOT}"
+  echo "PVあり: /workspace/data, PVなし: /workspace を想定"
   exit 1
 fi
 
@@ -30,35 +31,24 @@ if [ ! -d "$COMFY_DIR" ]; then
   exit 1
 fi
 
-# ---- 3) required model files ----
-echo "[3] Check required models under ${PV_DIR}/models"
-
-need_files=(
-  "${PV_DIR}/models/wan2.2/Wan2.2_Remix_NSFW_i2v_14b_high_lighting_v2.1.safetensors"
-  "${PV_DIR}/models/wan2.2/Wan2.2_Remix_NSFW_i2v_14b_low_lighting_v2.1.safetensors"
-  "${PV_DIR}/models/text_encoders/nsfw_wan_umt5-xxl.safetensors"
-  "${PV_DIR}/models/scail/Wan21-14B-SCAIL-preview_bf16.safetensors"
-  "${PV_DIR}/models/uni3c/Wan21_Uni3C_controlnet_fp16.safetensors"
-)
-
-missing=0
-for f in "${need_files[@]}"; do
-  if [ ! -f "$f" ]; then
-    echo "MISSING: $f"
-    missing=1
-  else
-    echo "OK:      $f"
-  fi
-done
-
-if [ "$missing" -ne 0 ]; then
-  echo "ERROR: required model files are missing."
-  echo "models_manifest.yaml を見て /workspace/data/models に配置してください。"
+# ---- 3) extra_model_paths.yaml ----
+echo "[3] Generate extra_model_paths.yaml"
+if [ ! -x "$REPO_DIR/scripts/generate_extra_model_paths.sh" ]; then
+  echo "ERROR: generate_extra_model_paths.sh not found or not executable"
   exit 1
 fi
+ROOT="$ROOT" COMFY_DIR="$COMFY_DIR" bash "$REPO_DIR/scripts/generate_extra_model_paths.sh"
 
-# ---- 4) required custom node ----
-echo "[4] Check WanVideoWrapper node"
+# ---- 4) required model files ----
+echo "[4] Check required models under ${MODELS_DIR}"
+if [ ! -x "$REPO_DIR/scripts/check_models_manifest.py" ]; then
+  echo "ERROR: check_models_manifest.py not found or not executable"
+  exit 1
+fi
+python3 "$REPO_DIR/scripts/check_models_manifest.py" "$REPO_DIR/models_manifest.yaml" --root "$ROOT"
+
+# ---- 5) required custom node ----
+echo "[5] Check WanVideoWrapper node"
 NODE_DIR="${COMFY_DIR}/custom_nodes/ComfyUI-WanVideoWrapper"
 if [ ! -d "$NODE_DIR" ]; then
   echo "ERROR: WanVideoWrapper not found: ${NODE_DIR}"
@@ -66,4 +56,4 @@ if [ ! -d "$NODE_DIR" ]; then
   exit 1
 fi
 
-echo "[5] OK. Environment looks good."
+echo "[6] OK. Environment looks good."

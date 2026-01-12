@@ -1,6 +1,14 @@
-/workspace/data/models/
-  ├ wan/
+ROOT is the directory one level above models.
+
+PVあり: ROOT=/workspace/data
+PVなし: ROOT=/workspace
+
+${ROOT}/models/
+  ├ diffusion_models/
   ├ text_encoders/
   ├ scail/
-  ├ uni3c/
+  ├ controlnet/
+  ├ onnx/
+  ├ clip_vision/
+  ├ wanvideo/
   └ lora/
