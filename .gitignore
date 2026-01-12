@@ -1,0 +1,38 @@
+# Secrets
+.env
+*.key
+*.pem
+
+# Model / weights (never commit)
+models/
+**/models/
+*.safetensors
+*.ckpt
+*.pt
+*.pth
+*.bin
+*.gguf
+*.onnx
+
+# Outputs / cache
+outputs/
+**/outputs/
+cache/
+**/cache/
+tmp/
+**/tmp/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs
+*.log
