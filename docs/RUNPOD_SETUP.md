@@ -1,28 +1,51 @@
-# RunPod セットアップ手順（ComfyUI / SCAIL + Uni3C + Wan）
+# RunPod セットアップ手順（Wan 2.2 + SCAIL + Uni3C 専用）
 
-この手順は「起動→生成→停止」を前提に、GPU課金時間を最小化するためのもの。
+本手順は、`video-gen` GitHub リポジトリを用いて  
+**Wan 2.2 Remix NSFW + SCAIL + Uni3C** による動画生成環境を  
+RunPod 上で再現するためのものです。
 
-## 0. 前提
-- GPU: A100 80GB（推奨）
-- Pod Template: RunPod PyTorch（汎用）
-- Pricing: On-Demand（最初はSpot非推奨）
-- Persistent Volume (PV): ON
-  - Mount Path: /workspace/data
+本環境は **動画生成専用** とし、画像生成用 ComfyUI とは分離します。
 
-## 1. Pod作成（RunPod UI）
-1) GPU選択: A100 80GB（SXM/PCIeどちらでも可）
-2) GPU count: 1
-3) Pricing: On-Demand
-4) Template: RunPod PyTorch
-5) Storage:
-   - Persistent Volume: ON
-   - Mount Path: /workspace/data
-6) Deploy → 起動
+---
 
-## 2. SSHで接続（起動後）
-RunPodの Connect から SSH で接続。
+## 1. 前提
 
-まずPVが見えることを確認:
+- RunPod アカウント
+- GPU: RTX 4090 / A100 / H100 クラス推奨
+- Persistent Volume（以下 PV）を使用
+- 本リポジトリ：`video-gen`
+
+---
+
+## 2. RunPod Pod 作成
+
+1. RunPod で新規 Pod 作成
+2. テンプレート：Ubuntu / CUDA 対応
+3. **Persistent Volume を有効化**
+   - Mount Path: `/workspace/data`
+
+---
+
+## 3. ディレクトリ構成（確定）
+
+### 3.1 全体構造
+/workspace/
+├ ComfyUI/ ← ComfyUI 本体（git clone）
+├ repos/
+│ └ video-gen/ ← この GitHub リポジトリ
+└ data/ ← Persistent Volume
+├ models/
+├ inputs/
+├ outputs/
+└ cache/
+
+
+---
+
+## 4. セットアップ手順
+
+### 4.1 ComfyUI 本体の取得
+
 ```bash
-ls -la /workspace
-ls -la /workspace/data
+cd /workspace
+git clone https://github.com/comfyanonymous/ComfyUI.git

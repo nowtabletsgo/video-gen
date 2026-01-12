@@ -36,3 +36,31 @@ Thumbs.db
 
 # Logs
 *.log
+
+# ---- comfy runtime / local clutter ----
+comfy/ComfyUI/output/
+comfy/ComfyUI/output/**
+comfy/ComfyUI/outputs/
+comfy/ComfyUI/outputs/**
+comfy/ComfyUI/input/**
+comfy/ComfyUI/cache/**
+comfy/ComfyUI/temp/**
+comfy/**/__pycache__/**
+*.log
+
+# ---- models (never commit) ----
+models/**
+**/models/**
+**/checkpoints/**
+**/diffusion_models/**
+**/text_encoders/**
+**/controlnet/**
+**/loras/**
+**/vae/**
+**/*.safetensors
+**/*.ckpt
+**/*.pt
+
+# ---- venv ----
+.venv/
+venv/
