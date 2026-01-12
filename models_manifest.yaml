@@ -1,0 +1,58 @@
+version: 1
+models_root: models
+groups:
+  diffusion_models:
+    description: Wan 2.2 Remix NSFW I2V models (high/low).
+    items:
+      - id: wan22_remix_i2v_high_v21
+        file: wan22RemixT2VI2V_i2vHighV21.safetensors
+        accept_aliases:
+          - Wan2.2_Remix_NSFW_i2v_14b_high_lighting_v2.1.safetensors
+        prefer: wan22RemixT2VI2V_i2vHighV21.safetensors
+        source:
+          type: hf_private
+          repo: jusmin/private-test
+          path: diffusion_models/wan22RemixT2VI2V_i2vHighV21.safetensors
+      - id: wan22_remix_i2v_low_v21
+        file: wan22RemixT2VI2V_i2vLowV21.safetensors
+        accept_aliases:
+          - Wan2.2_Remix_NSFW_i2v_14b_low_lighting_v2.1.safetensors
+        prefer: wan22RemixT2VI2V_i2vLowV21.safetensors
+        source:
+          type: hf_private
+          repo: jusmin/private-test
+          path: diffusion_models/wan22RemixT2VI2V_i2vLowV21.safetensors
+  text_encoders:
+    description: NSFW UMT5-XXL text encoder.
+    items:
+      - id: nsfw_wan_umt5_xxl_bf16
+        file: nsfw_wan_umt5-xxl_bf16.safetensors
+        accept_aliases:
+          - nsfw_wan_umt5-xxl.safetensors
+        prefer: nsfw_wan_umt5-xxl_bf16.safetensors
+  scail:
+    description: SCAIL temporal conditioning model.
+    items:
+      - id: wan21_scail_preview_bf16
+        file: Wan21-14B-SCAIL-preview_comfy_bf16.safetensors
+        accept_aliases:
+          - Wan21-14B-SCAIL-preview_bf16.safetensors
+        prefer: Wan21-14B-SCAIL-preview_comfy_bf16.safetensors
+  controlnet:
+    description: Uni3C controlnet model.
+    items:
+      - id: wan21_uni3c_controlnet_fp16
+        file: Wan21_Uni3C_controlnet_fp16.safetensors
+        accept_aliases: []
+        prefer: Wan21_Uni3C_controlnet_fp16.safetensors
+  onnx:
+    description: Pose and keypoint detection models.
+    items:
+      - id: yolov10m
+        file: yolov10m.onnx
+        accept_aliases: []
+        prefer: yolov10m.onnx
+      - id: vitpose_l_wholebody
+        file: vitpose-l-wholebody.onnx
+        accept_aliases: []
+        prefer: vitpose-l-wholebody.onnx
