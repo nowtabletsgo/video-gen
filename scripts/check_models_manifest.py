@@ -40,6 +40,7 @@ def main() -> int:
 
     missing = []
     alias_used = []
+    missing_optional = []
 
     for _, item in iter_items(manifest):
         item_id = item.get("id", "unknown")
@@ -55,6 +56,10 @@ def main() -> int:
                 found = rel
                 break
 
+        if found is None and item.get("optional"):
+            missing_optional.append((item_id, prefer))
+            continue
+
         if found is None:
             missing.append((item_id, prefer))
         elif found != prefer:
@@ -64,6 +69,11 @@ def main() -> int:
         print("WARN: alias paths in use (prefer canonical when possible):")
         for item_id, found, prefer in alias_used:
             print(f"  - {item_id}: {found} (prefer {prefer})")
+
+    if missing_optional:
+        print("WARN: optional model files are missing:")
+        for item_id, prefer in missing_optional:
+            print(f"  - {item_id}: {prefer}")
 
     if missing:
         print("ERROR: required model files are missing:")
