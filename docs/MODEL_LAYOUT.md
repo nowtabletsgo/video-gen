@@ -1,7 +1,6 @@
 ROOT is the directory one level above models.
 
-PVあり: ROOT=/workspace/data
-PVなし: ROOT=/workspace
+ROOT=/workspace/data
 
 ${ROOT}/models/
   ├ diffusion_models/

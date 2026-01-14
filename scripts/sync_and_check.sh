@@ -13,7 +13,7 @@ MODELS_DIR="${ROOT}/models"
 echo "[0] Check ROOT: ${ROOT}"
 if [ ! -d "$ROOT" ]; then
   echo "ERROR: ROOT not found at ${ROOT}"
-  echo "PVあり: /workspace/data, PVなし: /workspace を想定"
+  echo "PVあり: /workspace/data を想定"
   exit 1
 fi
 

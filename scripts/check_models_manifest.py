@@ -7,7 +7,15 @@ import sys
 
 def load_manifest(path: str) -> dict:
     with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)
+        text = f.read()
+    try:
+        import yaml  # type: ignore
+    except Exception:
+        try:
+            return json.loads(text)
+        except Exception as exc:
+            raise SystemExit("PyYAML is not installed. Install it or use JSON manifest.") from exc
+    return yaml.safe_load(text)
 
 
 def iter_items(manifest: dict):
@@ -26,7 +34,7 @@ def exists(models_dir: str, rel: str) -> bool:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Validate models against models_manifest.yaml.")
-    parser.add_argument("manifest", help="Path to models_manifest.yaml (JSON format)")
+    parser.add_argument("manifest", help="Path to models_manifest.yaml (YAML or JSON)")
     parser.add_argument("--root", default=os.environ.get("ROOT", "/workspace/data"))
     args = parser.parse_args()
 

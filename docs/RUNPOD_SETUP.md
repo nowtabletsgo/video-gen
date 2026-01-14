@@ -13,7 +13,8 @@ RunPod 上で再現するためのものです。
 - RunPod アカウント
 - GPU: RTX 4090 / A100 / H100 クラス推奨
 - 本リポジトリ：`video-gen`
-- PVは最小化し、モデル本体は外部ストレージから同期
+- PVにモデル本体を常設（決定モデルのみ）
+- 生成物は必ずR2へ移動
 
 ---
 
@@ -21,8 +22,7 @@ RunPod 上で再現するためのものです。
 
 ROOT は **models の1個上** に固定します。
 
-- PVあり: `ROOT=/workspace/data`
-- PVなし: `ROOT=/workspace`
+`ROOT=/workspace/data`
 
 モデル配置先は常に `${ROOT}/models/...` です。
 
@@ -34,7 +34,7 @@ ROOT は **models の1個上** に固定します。
 ├ ComfyUI/
 ├ repos/
 │ └ video-gen/
-└ data/ （PVあり時のみ）
+└ data/ （PV）
 
 モデル配置先（両モード共通）:
 
@@ -74,20 +74,14 @@ COMFY_DIR=/workspace/ComfyUI \
 bash /workspace/repos/video-gen/scripts/generate_extra_model_paths.sh
 ```
 
-PVなしの場合は `ROOT=/workspace` に置き換えます。
+PVなしは使用しません（モデルはPV常設）。
 
-### 4.4 モデル同期（外部ストレージ）
+### 4.4 モデル配置（PV常設）
 
 `models_manifest.yaml` が唯一の正です。  
-外部ストレージから **manifest と一致するファイルのみ** 同期してください。
+`${ROOT}/models` 配下に **manifest と一致するファイルのみ** 配置してください。
 
-例（方針のみ）:
-
-- rclone sync
-- aws s3 sync
-- huggingface-cli download
-
-同期先は必ず `${ROOT}/models` 配下にしてください。
+初回のみ HF からダウンロードしてPVに固定配置します。
 
 ### 4.5 事前チェック
 
@@ -113,3 +107,14 @@ python main.py --listen 0.0.0.0 --port 8188
 - 参照動画: 3〜5秒
 
 目的は **赤ノードや不足モデルの検出** のみです。
+
+---
+
+## 6. 生成物のR2移動（必須）
+
+生成後、以下を実行してR2へ移動します（PVに残さない）。
+
+```bash
+rclone sync /workspace/ComfyUI/output r2:wan01/runpod/output --progress
+rclone sync /workspace/ComfyUI/temp   r2:wan01/runpod/temp --progress
+```
