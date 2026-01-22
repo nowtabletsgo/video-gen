@@ -24,6 +24,27 @@ groups:
         type: hf_private
         repo: jusmin/private-test
         path: diffusion_models/wan22RemixT2VI2V_i2vLowV21.safetensors
+  rapid_aio:
+    description: Rapid-AllInOne (community AIO) models and configs.
+    items:
+    - id: rapid_aio_mega_v3_json
+      path: rapid_aio/Rapid-AIO-Mega.json
+      accept_aliases: []
+      prefer: rapid_aio/Rapid-AIO-Mega.json
+      optional: true
+      source:
+        type: hf
+        repo: Phr00t/WAN2.2-14B-Rapid-AllInOne
+        path: Mega-v3/Rapid-AIO-Mega.json
+    - id: rapid_aio_mega_v12_2_nsfw
+      path: rapid_aio/wan2.2-rapid-mega-aio-nsfw-v12.2.safetensors
+      accept_aliases: []
+      prefer: rapid_aio/wan2.2-rapid-mega-aio-nsfw-v12.2.safetensors
+      optional: true
+      source:
+        type: hf
+        repo: Phr00t/WAN2.2-14B-Rapid-AllInOne
+        path: Mega-v12/wan2.2-rapid-mega-aio-nsfw-v12.2.safetensors
   text_encoders:
     description: NSFW UMT5-XXL text encoder.
     items:
@@ -74,3 +95,26 @@ groups:
       accept_aliases:
       - vae/Wan2_2_VAE_bf16.safetensors
       prefer: wanvideo/Wan2_2_VAE_bf16.safetensors
+  lora:
+    description: Optional LoRA models.
+    items:
+    - id: nsfw_22_h_e8_lora
+      path: lora/NSFW-22-H-e8.safetensors
+      accept_aliases:
+      - diffusion_models/lora/NSFW-22-H-e8.safetensors
+      prefer: lora/NSFW-22-H-e8.safetensors
+      optional: true
+      source:
+        type: hf_private
+        repo: jusmin/private-test
+        path: diffusion_models/lora/NSFW-22-H-e8.safetensors
+    - id: nsfw_22_l_e8_lora
+      path: lora/NSFW-22-L-e8.safetensors
+      accept_aliases:
+      - diffusion_models/lora/NSFW-22-L-e8.safetensors
+      prefer: lora/NSFW-22-L-e8.safetensors
+      optional: true
+      source:
+        type: hf_private
+        repo: jusmin/private-test
+        path: diffusion_models/lora/NSFW-22-L-e8.safetensors
