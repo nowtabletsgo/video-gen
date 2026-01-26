@@ -1,5 +1,8 @@
 # RunPod セットアップ手順（Wan 2.2 + SCAIL + Uni3C 専用）
 
+現在の主運用は Paperspace Gradient（Notebook / Growth）です。  
+Paperspace は `PAPERSPACE_SETUP.md` を参照してください。
+
 本手順は、`video-gen` リポジトリを用いて  
 **Wan 2.2 Remix NSFW + SCAIL + Uni3C** の動画生成環境を  
 RunPod 上で再現するためのものです。

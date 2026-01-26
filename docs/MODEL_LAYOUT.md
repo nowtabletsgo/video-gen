@@ -1,6 +1,9 @@
 ROOT is the directory one level above models.
 
-ROOT=/workspace/data
+Examples:
+
+- Paperspace Gradient（Notebook / Growth）: `ROOT=/storage/data`
+- RunPod（legacy）: `ROOT=/workspace/data`
 
 ${ROOT}/models/
   ├ diffusion_models/
