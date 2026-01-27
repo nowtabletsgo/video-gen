@@ -11,7 +11,7 @@ RunPod 手順（`RUNPOD_SETUP.md`）は引き続き参照できますが、**運
 ## 1. 前提
 
 - Paperspace Gradient Notebook（Growth）
-- 公開ポート（`8188`）を使う運用（ComfyUI を外部アクセス可能にする）
+- ComfyUI を外部アクセス可能にする（Public URL / Proxy 経由）
 - 永続ストレージは `/storage` を利用（モデルは永続化、生成物はR2へ移動）
 
 ---
@@ -99,7 +99,9 @@ cd /notebooks/ComfyUI
 python main.py --listen 0.0.0.0 --port 8188
 ```
 
-Notebook 側で `8188` を公開できるように設定してください（公開しないとUIにアクセスできません）。
+Notebook 側でポートを外部公開できるように設定してください（公開しないとUIにアクセスできません）。
+
+Growth では「任意ポートの公開UI」が見つからないことがあるため、運用上は **6006（TensorBoardのProxy枠）** を使うのが安定です。
 
 ---
 
@@ -128,7 +130,7 @@ bash /notebooks/repos/video-gen/scripts/paperspace_bootstrap_venv.sh
 起動（毎回これだけ）:
 
 ```bash
-bash /notebooks/repos/video-gen/scripts/paperspace_run_comfy_venv.sh
+COMFY_PORT=6006 bash /notebooks/repos/video-gen/scripts/paperspace_run_comfy_venv.sh
 ```
 
 ---

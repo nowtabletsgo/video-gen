@@ -34,16 +34,16 @@ fi
 
 # ---- 3) extra_model_paths.yaml ----
 echo "[3] Generate extra_model_paths.yaml"
-if [ ! -x "$REPO_DIR/scripts/generate_extra_model_paths.sh" ]; then
-  echo "ERROR: generate_extra_model_paths.sh not found or not executable"
+if [ ! -f "$REPO_DIR/scripts/generate_extra_model_paths.sh" ]; then
+  echo "ERROR: generate_extra_model_paths.sh not found"
   exit 1
 fi
 ROOT="$ROOT" COMFY_DIR="$COMFY_DIR" bash "$REPO_DIR/scripts/generate_extra_model_paths.sh"
 
 # ---- 4) required model files ----
 echo "[4] Check required models under ${MODELS_DIR}"
-if [ ! -x "$REPO_DIR/scripts/check_models_manifest.py" ]; then
-  echo "ERROR: check_models_manifest.py not found or not executable"
+if [ ! -f "$REPO_DIR/scripts/check_models_manifest.py" ]; then
+  echo "ERROR: check_models_manifest.py not found"
   exit 1
 fi
 "$PYTHON" "$REPO_DIR/scripts/check_models_manifest.py" "$REPO_DIR/models_manifest.yaml" --root "$ROOT"

@@ -93,6 +93,13 @@ echo "[3] Install/upgrade PyTorch (cu121) in venv"
   "torchvision==${TORCHVISION_VERSION}" \
   "torchaudio==${TORCHAUDIO_VERSION}"
 
+echo "[3.1] Fix CUDA wheel lib compatibility (nvJitLink/cusparse)"
+# Some notebook images ship /usr/local/cuda libs that conflict with pip CUDA wheels.
+# Pinning these and preferring their /nvidia/*/lib paths avoids runtime symbol errors.
+"$PIP" install --force-reinstall \
+  "nvidia-nvjitlink-cu12==12.1.105" \
+  "nvidia-cusparse-cu12==12.1.0.106"
+
 echo "[4] Install ComfyUI requirements in venv"
 "$PIP" install -r "${COMFY_DIR}/requirements.txt"
 
@@ -105,4 +112,3 @@ fi
 
 echo "[6] Done."
 echo "Next: bash ${REPO_DIR}/scripts/paperspace_run_comfy_venv.sh"
-
