@@ -114,6 +114,25 @@ bash /notebooks/repos/video-gen/scripts/pull_and_start.sh
 
 ---
 
+## 5.1 /storage に venv を作って “毎回一発起動” する（推奨）
+
+新しいNotebook（新しい環境）になると、PyTorch や ComfyUI 依存が初期化されることがあります。  
+その対策として、`/storage`（永続）に venv を作り、以後はその Python で ComfyUI を起動します。
+
+初回のみ（venv作成 + 依存導入）:
+
+```bash
+bash /notebooks/repos/video-gen/scripts/paperspace_bootstrap_venv.sh
+```
+
+起動（毎回これだけ）:
+
+```bash
+bash /notebooks/repos/video-gen/scripts/paperspace_run_comfy_venv.sh
+```
+
+---
+
 ## 6. 生成物のR2移動（必須）
 
 既存の `RunPod_R2_転送コマンド.txt` の rclone 手順をそのまま流用できます。  

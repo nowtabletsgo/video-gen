@@ -1,13 +1,33 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ROOT="${ROOT:-/workspace/data}"
-COMFY_DIR="${COMFY_DIR:-/workspace/ComfyUI}"
+detect_path() {
+  local candidate
+  for candidate in "$@"; do
+    if [ -n "$candidate" ] && [ -d "$candidate" ]; then
+      echo "$candidate"
+      return 0
+    fi
+  done
+  return 1
+}
+
+ROOT="${ROOT:-}"
+COMFY_DIR="${COMFY_DIR:-}"
+if [ -z "$ROOT" ]; then
+  ROOT="$(detect_path /storage/data /workspace/data || true)"
+  ROOT="${ROOT:-/workspace/data}"
+fi
+if [ -z "$COMFY_DIR" ]; then
+  COMFY_DIR="$(detect_path /notebooks/ComfyUI /workspace/ComfyUI || true)"
+  COMFY_DIR="${COMFY_DIR:-/workspace/ComfyUI}"
+fi
 OUT="${EXTRA_MODEL_PATHS:-${COMFY_DIR}/extra_model_paths.yaml}"
 MODELS_DIR="${ROOT}/models"
 
 cat > "$OUT" <<EOF
-- base_path: ${MODELS_DIR}
+video-gen:
+  base_path: ${MODELS_DIR}
   checkpoints: diffusion_models
   diffusion_models: diffusion_models
   text_encoders: text_encoders

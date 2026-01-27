@@ -8,6 +8,7 @@ COMFY_DIR="${COMFY_DIR:-/workspace/ComfyUI}"
 REPO_DIR="${REPO_DIR:-/workspace/repos/video-gen}"
 ROOT="${ROOT:-/workspace/data}"
 MODELS_DIR="${ROOT}/models"
+PYTHON="${PYTHON:-python3}"
 
 # ---- 0) basic existence ----
 echo "[0] Check ROOT: ${ROOT}"
@@ -45,7 +46,7 @@ if [ ! -x "$REPO_DIR/scripts/check_models_manifest.py" ]; then
   echo "ERROR: check_models_manifest.py not found or not executable"
   exit 1
 fi
-python3 "$REPO_DIR/scripts/check_models_manifest.py" "$REPO_DIR/models_manifest.yaml" --root "$ROOT"
+"$PYTHON" "$REPO_DIR/scripts/check_models_manifest.py" "$REPO_DIR/models_manifest.yaml" --root "$ROOT"
 
 # ---- 5) required custom node ----
 echo "[5] Check WanVideoWrapper node"
