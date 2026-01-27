@@ -28,15 +28,30 @@ MODELS_DIR="${ROOT}/models"
 cat > "$OUT" <<EOF
 video-gen:
   base_path: ${MODELS_DIR}
-  checkpoints: diffusion_models
-  diffusion_models: diffusion_models
-  text_encoders: text_encoders
+  checkpoints:
+    - diffusion_models
+    - diffusion_models/sfw
+    - diffusion_models/nsfw
+  diffusion_models:
+    - diffusion_models
+    - diffusion_models/sfw
+    - diffusion_models/nsfw
+  text_encoders:
+    - text_encoders
+    - text_encoders/sfw
+    - text_encoders/nsfw
   scail: scail
   controlnet: controlnet
   onnx: onnx
   clip_vision: clip_vision
-  loras: lora
-  vae: wanvideo
+  loras:
+    - lora/sfw
+    - lora/nsfw
+  vae:
+    - wanvideo
+    - vae
+    - vae/sfw
+    - vae/nsfw
   wanvideo: wanvideo
 EOF
 
