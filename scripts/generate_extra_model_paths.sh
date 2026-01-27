@@ -14,6 +14,7 @@ detect_path() {
 
 ROOT="${ROOT:-}"
 COMFY_DIR="${COMFY_DIR:-}"
+USE_VAE_DIRS="${USE_VAE_DIRS:-0}"
 if [ -z "$ROOT" ]; then
   ROOT="$(detect_path /storage/data /workspace/data || true)"
   ROOT="${ROOT:-/workspace/data}"
@@ -49,10 +50,17 @@ video-gen:
     - lora/nsfw
   vae:
     - wanvideo
+  wanvideo: wanvideo
+EOF
+
+if [ "${USE_VAE_DIRS}" = "1" ]; then
+  cat >> "$OUT" <<EOF
+  vae:
+    - wanvideo
     - vae
     - vae/sfw
     - vae/nsfw
-  wanvideo: wanvideo
 EOF
+fi
 
 echo "Wrote ${OUT}"

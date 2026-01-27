@@ -109,6 +109,12 @@ echo "[3] Start ComfyUI (port ${COMFY_PORT})"
 if [ -n "${PAPERSPACE_NOTEBOOK_ID:-}" ] && [ -n "${PAPERSPACE_CLUSTER_ID:-}" ]; then
   echo "Access URL:"
   echo "  https://tensorboard-${PAPERSPACE_NOTEBOOK_ID}.${PAPERSPACE_CLUSTER_ID}.paperspacegradient.com/"
+elif [ -n "${PAPERSPACE_FQDN:-}" ]; then
+  echo "Access URL:"
+  echo "  https://tensorboard-${PAPERSPACE_FQDN}/"
+else
+  echo "Access URL:"
+  echo "  https://tensorboard-<NOTEBOOK_ID>.<CLUSTER_ID>.paperspacegradient.com/"
 fi
 cd "$COMFY_DIR"
 exec "$PY" main.py --listen 0.0.0.0 --port "$COMFY_PORT"
