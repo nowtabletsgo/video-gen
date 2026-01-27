@@ -18,6 +18,7 @@ ROOT="${ROOT:-}"
 COMFY_DIR="${COMFY_DIR:-}"
 REPO_DIR="${REPO_DIR:-}"
 COMFY_PORT="${COMFY_PORT:-6006}"
+COMFY_ARGS="${COMFY_ARGS:---highvram}"
 
 if [ -z "$ROOT" ]; then
   ROOT="$(detect_path /storage/data /workspace/data || true)"
@@ -117,4 +118,4 @@ else
   echo "  https://tensorboard-<NOTEBOOK_ID>.<CLUSTER_ID>.paperspacegradient.com/"
 fi
 cd "$COMFY_DIR"
-exec "$PY" main.py --listen 0.0.0.0 --port "$COMFY_PORT"
+exec "$PY" main.py --listen 0.0.0.0 --port "$COMFY_PORT" $COMFY_ARGS
