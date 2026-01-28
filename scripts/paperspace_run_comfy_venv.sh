@@ -19,6 +19,7 @@ COMFY_DIR="${COMFY_DIR:-}"
 REPO_DIR="${REPO_DIR:-}"
 COMFY_PORT="${COMFY_PORT:-6006}"
 COMFY_ARGS="${COMFY_ARGS:---highvram}"
+PYTORCH_CUDA_ALLOC_CONF="${PYTORCH_CUDA_ALLOC_CONF:-expandable_segments:True,max_split_size_mb:256}"
 
 if [ -z "$ROOT" ]; then
   ROOT="$(detect_path /storage/data /workspace/data || true)"
@@ -52,6 +53,7 @@ fi
 echo "[0] Resolve CUDA lib paths (prefer venv site-packages)"
 # Ensure tools invoked by custom nodes (e.g. ComfyUI-Manager) resolve to the venv first.
 export PATH="${VENV_DIR}/bin:${PATH}"
+export PYTORCH_CUDA_ALLOC_CONF
 
 # Avoid Python import-based discovery because some environments treat `nvidia.*` as namespace packages
 # (e.g. __file__ can be None). Instead, locate the shared libraries directly inside the venv.
